@@ -1,5 +1,11 @@
 # Synology CSI Driver for Kubernetes
 
+## Fork Note 
+
+This fork exists to build a release to dockerhub which includes ARM64.
+
+---
+
 The official [Container Storage Interface](https://github.com/container-storage-interface) driver for Synology NAS.
 
 ### Container Images & Kubernetes Compatibility
