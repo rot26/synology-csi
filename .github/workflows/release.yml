@@ -2,9 +2,8 @@ name: goreleaser
 
 on:
   push:
-#     tags:
-#       - 'v*'
-    types: [created]
+    tags:
+      - 'v*'
 
 permissions:
   contents: write
