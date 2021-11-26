@@ -22,7 +22,7 @@ env_files:
 
 dockers:
 - image_templates:
-  - ghcr.io/${{ github.repository_owner }}/{{ .ProjectName }}:{{ .Tag }}-amd64
+  - ghcr.io/{{ github_owner }}/{{ .ProjectName }}:{{ .Tag }}-amd64
   dockerfile: Dockerfile
   goos: linux
   goarch: amd64
@@ -31,8 +31,8 @@ dockers:
   - --platform=linux/amd64
   - --label=org.opencontainers.image.title={{ .Tag }}
   - --label=org.opencontainers.image.description={{ .ProjectName }}
-  - --label=org.opencontainers.image.url=https://github.com/${{ github.repository_owner }}/{{ .ProjectName }}
-  - --label=org.opencontainers.image.source=https://github.com/${{ github.repository_owner }}/{{ .ProjectName }}
+  - --label=org.opencontainers.image.url=https://github.com/{{ github_owner }}/{{ .ProjectName }}
+  - --label=org.opencontainers.image.source=https://github.com/{{ github_owner }}/{{ .ProjectName }}
   - --label=org.opencontainers.image.version={{ .Version }}
   - --label=org.opencontainers.image.created={{ time "2006-01-02T15:04:05Z07:00" }}
   - --label=org.opencontainers.image.revision={{ .FullCommit }}
@@ -47,7 +47,7 @@ dockers:
   - go.mod
 
 - image_templates:
-  - ghcr.io/${{ github.repository_owner }}/{{ .ProjectName }}:{{ .Tag }}-arm
+  - ghcr.io/{{ github_owner }}/{{ .ProjectName }}:{{ .Tag }}-arm
   goos: linux
   goarch: arm
   goarm: 7
@@ -57,8 +57,8 @@ dockers:
   - --platform=linux/arm
   - --label=org.opencontainers.image.title={{ .ProjectName }}
   - --label=org.opencontainers.image.description={{ .ProjectName }}
-  - --label=org.opencontainers.image.url=https://github.com/${{ github.repository_owner }}/{{ .ProjectName }}
-  - --label=org.opencontainers.image.source=https://github.com/${{ github.repository_owner }}/{{ .ProjectName }}
+  - --label=org.opencontainers.image.url=https://github.com/{{ github_owner }}/{{ .ProjectName }}
+  - --label=org.opencontainers.image.source=https://github.com/{{ github_owner }}/{{ .ProjectName }}
   - --label=org.opencontainers.image.version={{ .Version }}
   - --label=org.opencontainers.image.created={{ time "2006-01-02T15:04:05Z07:00" }}
   - --label=org.opencontainers.image.revision={{ .FullCommit }}
@@ -73,7 +73,7 @@ dockers:
   - go.mod
 
 - image_templates:
-  - ghcr.io/${{ github.repository_owner }}/{{ .ProjectName }}:{{ .Tag }}-arm64
+  - ghcr.io/{{ github_owner }}/{{ .ProjectName }}:{{ .Tag }}-arm64
   goos: linux
   goarch: arm64
   use: buildx
@@ -82,8 +82,8 @@ dockers:
   - --platform=linux/arm64/v8
   - --label=org.opencontainers.image.title={{ .ProjectName }}
   - --label=org.opencontainers.image.description={{ .ProjectName }}
-  - --label=org.opencontainers.image.url=https://github.com/${{ github.repository_owner }}/{{ .ProjectName }}
-  - --label=org.opencontainers.image.source=https://github.com/${{ github.repository_owner }}/{{ .ProjectName }}
+  - --label=org.opencontainers.image.url=https://github.com/{{ github_owner }}/{{ .ProjectName }}
+  - --label=org.opencontainers.image.source=https://github.com/{{ github_owner }}/{{ .ProjectName }}
   - --label=org.opencontainers.image.version={{ .Version }}
   - --label=org.opencontainers.image.created={{ time "2006-01-02T15:04:05Z07:00" }}
   - --label=org.opencontainers.image.revision={{ .FullCommit }}
@@ -98,15 +98,15 @@ dockers:
   - go.mod
 
 docker_manifests:
-- name_template: ghcr.io/${{ github.repository_owner }}/{{ .ProjectName }}:{{ .Tag }}
+- name_template: ghcr.io/{{ github_owner }}/{{ .ProjectName }}:{{ .Tag }}
   image_templates:
-  - ghcr.io/${{ github.repository_owner }}/{{ .ProjectName }}:{{ .Tag }}-amd64
-  - ghcr.io/${{ github.repository_owner }}/{{ .ProjectName }}:{{ .Tag }}-arm64v8
-  - ghcr.io/${{ github.repository_owner }}/{{ .ProjectName }}:{{ .Tag }}-arm
+  - ghcr.io/{{ github_owner }}/{{ .ProjectName }}:{{ .Tag }}-amd64
+  - ghcr.io/{{ github_owner }}/{{ .ProjectName }}:{{ .Tag }}-arm64v8
+  - ghcr.io/{{ github_owner }}/{{ .ProjectName }}:{{ .Tag }}-arm
 
-- name_template: ghcr.io/${{ github.repository_owner }}/{{ .ProjectName }}:latest
+- name_template: ghcr.io/{{ github_owner }}/{{ .ProjectName }}:latest
   image_templates:
-  - ghcr.io/${{ github.repository_owner }}/{{ .ProjectName }}:{{ .Tag }}-amd64
-  - ghcr.io/${{ github.repository_owner }}/{{ .ProjectName }}:{{ .Tag }}-arm64v8
-  - ghcr.io/${{ github.repository_owner }}/{{ .ProjectName }}:{{ .Tag }}-arm
+  - ghcr.io/{{ github_owner }}/{{ .ProjectName }}:{{ .Tag }}-amd64
+  - ghcr.io/{{ github_owner }}/{{ .ProjectName }}:{{ .Tag }}-arm64v8
+  - ghcr.io/{{ github_owner }}/{{ .ProjectName }}:{{ .Tag }}-arm
 
