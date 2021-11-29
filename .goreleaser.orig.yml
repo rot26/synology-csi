@@ -22,7 +22,7 @@ env_files:
 
 dockers:
 - image_templates:
-  - ghcr.io/{{ .Env.GITHUB_REPOSITORY_OWNER }}/{{ .ProjectName }}:{{ .Tag }}-amd64
+  - "{{ .Env.DOCKER_REGISTRY }}/{{ .Env.GITHUB_REPOSITORY_OWNER }}/{{ .ProjectName }}:{{ .Tag }}-amd64"
   dockerfile: Dockerfile
   goos: linux
   goarch: amd64
@@ -47,7 +47,7 @@ dockers:
   - go.mod
 
 - image_templates:
-  - ghcr.io/{{ .Env.GITHUB_REPOSITORY_OWNER }}/{{ .ProjectName }}:{{ .Tag }}-arm
+  - "{{ .Env.DOCKER_REGISTRY }}/{{ .Env.GITHUB_REPOSITORY_OWNER }}/{{ .ProjectName }}:{{ .Tag }}-arm"
   goos: linux
   goarch: arm
   goarm: 7
@@ -73,7 +73,7 @@ dockers:
   - go.mod
 
 - image_templates:
-  - ghcr.io/{{ .Env.GITHUB_REPOSITORY_OWNER }}/{{ .ProjectName }}:{{ .Tag }}-arm64
+  - "{{ .Env.DOCKER_REGISTRY }}/{{ .Env.GITHUB_REPOSITORY_OWNER }}/{{ .ProjectName }}:{{ .Tag }}-arm64"
   goos: linux
   goarch: arm64
   use: buildx
@@ -98,15 +98,14 @@ dockers:
   - go.mod
 
 docker_manifests:
-- name_template: ghcr.io/{{ .Env.GITHUB_REPOSITORY_OWNER }}/{{ .ProjectName }}:{{ .Tag }}
+- name_template: "{{ .Env.DOCKER_REGISTRY }}/{{ .Env.GITHUB_REPOSITORY_OWNER }}/{{ .ProjectName }}:{{ .Tag }}"
   image_templates:
-  - ghcr.io/{{ .Env.GITHUB_REPOSITORY_OWNER }}/{{ .ProjectName }}:{{ .Tag }}-amd64
-  - ghcr.io/{{ .Env.GITHUB_REPOSITORY_OWNER }}/{{ .ProjectName }}:{{ .Tag }}-arm64v8
-  - ghcr.io/{{ .Env.GITHUB_REPOSITORY_OWNER }}/{{ .ProjectName }}:{{ .Tag }}-arm
+  - "{{ .Env.DOCKER_REGISTRY }}/{{ .Env.GITHUB_REPOSITORY_OWNER }}/{{ .ProjectName }}:{{ .Tag }}-amd64"
+  - "{{ .Env.DOCKER_REGISTRY }}/{{ .Env.GITHUB_REPOSITORY_OWNER }}/{{ .ProjectName }}:{{ .Tag }}-arm64v8"
+  - "{{ .Env.DOCKER_REGISTRY }}/{{ .Env.GITHUB_REPOSITORY_OWNER }}/{{ .ProjectName }}:{{ .Tag }}-arm"
 
-- name_template: ghcr.io/{{ .Env.GITHUB_REPOSITORY_OWNER }}/{{ .ProjectName }}:latest
+- name_template: "{{ .Env.DOCKER_REGISTRY }}/{{ .Env.GITHUB_REPOSITORY_OWNER }}/{{ .ProjectName }}:latest"
   image_templates:
-  - ghcr.io/{{ .Env.GITHUB_REPOSITORY_OWNER }}/{{ .ProjectName }}:{{ .Tag }}-amd64
-  - ghcr.io/{{ .Env.GITHUB_REPOSITORY_OWNER }}/{{ .ProjectName }}:{{ .Tag }}-arm64v8
-  - ghcr.io/{{ .Env.GITHUB_REPOSITORY_OWNER }}/{{ .ProjectName }}:{{ .Tag }}-arm
-
+  - "{{ .Env.DOCKER_REGISTRY }}/{{ .Env.GITHUB_REPOSITORY_OWNER }}/{{ .ProjectName }}:{{ .Tag }}-amd64"
+  - "{{ .Env.DOCKER_REGISTRY }}/{{ .Env.GITHUB_REPOSITORY_OWNER }}/{{ .ProjectName }}:{{ .Tag }}-arm64v8"
+  - "{{ .Env.DOCKER_REGISTRY }}/{{ .Env.GITHUB_REPOSITORY_OWNER }}/{{ .ProjectName }}:{{ .Tag }}-arm"
