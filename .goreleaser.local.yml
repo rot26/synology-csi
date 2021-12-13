@@ -22,7 +22,7 @@ builds: []
 
 dockers:
 - image_templates:
-  - rot26/{{ .ProjectName }}:{{ .Tag }}-amd64
+  - ghcr.io/rot26/{{ .ProjectName }}:{{ .Tag }}-amd64
   dockerfile: goreleaser.Dockerfile
   goos: linux
   goarch: amd64
@@ -47,7 +47,7 @@ dockers:
   - go.mod
 
 # - image_templates:
-#   - rot26/{{ .ProjectName }}:{{ .Tag }}-arm
+#   - ghcr.io/rot26/{{ .ProjectName }}:{{ .Tag }}-arm
 #   goos: linux
 #   goarch: arm
 #   goarm: 7
@@ -73,7 +73,7 @@ dockers:
 #   - go.mod
 
 - image_templates:
-  - rot26/{{ .ProjectName }}:{{ .Tag }}-arm64
+  - ghcr.io/rot26/{{ .ProjectName }}:{{ .Tag }}-arm64
   goos: linux
   goarch: arm64
   use: buildx
@@ -98,14 +98,14 @@ dockers:
   - go.mod
 
 docker_manifests:
-- name_template: rot26/{{ .ProjectName }}:{{ .Tag }}
+- name_template: ghcr.io/rot26/{{ .ProjectName }}:{{ .Tag }}
   image_templates:
-  - rot26/{{ .ProjectName }}:{{ .Tag }}-amd64
-  - rot26/{{ .ProjectName }}:{{ .Tag }}-arm64v8
-  # - rot26/{{ .ProjectName }}:{{ .Tag }}-arm
+  - ghcr.io/rot26/{{ .ProjectName }}:{{ .Tag }}-amd64
+  - ghcr.io/rot26/{{ .ProjectName }}:{{ .Tag }}-arm64v8
+  # - ghcr.io/rot26/{{ .ProjectName }}:{{ .Tag }}-arm
 
-- name_template: rot26/{{ .ProjectName }}:latest
+- name_template: ghcr.io/rot26/{{ .ProjectName }}:latest
   image_templates:
-  - rot26/{{ .ProjectName }}:{{ .Tag }}-amd64
-  - rot26/{{ .ProjectName }}:{{ .Tag }}-arm64v8
-  # - rot26/{{ .ProjectName }}:{{ .Tag }}-arm
+  - ghcr.io/rot26/{{ .ProjectName }}:{{ .Tag }}-amd64
+  - ghcr.io/rot26/{{ .ProjectName }}:{{ .Tag }}-arm64v8
+  # - ghcr.io/rot26/{{ .ProjectName }}:{{ .Tag }}-arm
