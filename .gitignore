@@ -3,5 +3,3 @@ dist/
 *.exe
 synology-csi
 vendor/
-
-dist/

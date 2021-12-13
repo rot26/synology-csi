@@ -22,8 +22,8 @@ builds: []
 
 dockers:
 - image_templates:
-  - ghcr.io/{{ .Env.GITHUB_REPOSITORY_OWNER }}/{{ .ProjectName }}:{{ .Tag }}-amd64
-  dockerfile: Dockerfile
+  - rot26/{{ .ProjectName }}:{{ .Tag }}-amd64
+  dockerfile: goreleaser.Dockerfile
   goos: linux
   goarch: amd64
   use: buildx
@@ -31,8 +31,8 @@ dockers:
   - --platform=linux/amd64
   - --label=org.opencontainers.image.title={{ .Tag }}
   - --label=org.opencontainers.image.description={{ .ProjectName }}
-  - --label=org.opencontainers.image.url=https://github.com/{{ .Env.GITHUB_REPOSITORY_OWNER }}/{{ .ProjectName }}
-  - --label=org.opencontainers.image.source=https://github.com/{{ .Env.GITHUB_REPOSITORY_OWNER }}/{{ .ProjectName }}
+  - --label=org.opencontainers.image.url=https://github.com/rot26/{{ .ProjectName }}
+  - --label=org.opencontainers.image.source=https://github.com/rot26/{{ .ProjectName }}
   - --label=org.opencontainers.image.version={{ .Version }}
   - --label=org.opencontainers.image.created={{ time "2006-01-02T15:04:05Z07:00" }}
   - --label=org.opencontainers.image.revision={{ .FullCommit }}
@@ -46,44 +46,44 @@ dockers:
   - go.sum
   - go.mod
 
-- image_templates:
-  - ghcr.io/{{ .Env.GITHUB_REPOSITORY_OWNER }}/{{ .ProjectName }}:{{ .Tag }}-arm
-  goos: linux
-  goarch: arm
-  goarm: 7
-  dockerfile: Dockerfile
-  use: buildx
-  build_flag_templates:
-  - --platform=linux/arm
-  - --label=org.opencontainers.image.title={{ .ProjectName }}
-  - --label=org.opencontainers.image.description={{ .ProjectName }}
-  - --label=org.opencontainers.image.url=https://github.com/{{ .Env.GITHUB_REPOSITORY_OWNER }}/{{ .ProjectName }}
-  - --label=org.opencontainers.image.source=https://github.com/{{ .Env.GITHUB_REPOSITORY_OWNER }}/{{ .ProjectName }}
-  - --label=org.opencontainers.image.version={{ .Version }}
-  - --label=org.opencontainers.image.created={{ time "2006-01-02T15:04:05Z07:00" }}
-  - --label=org.opencontainers.image.revision={{ .FullCommit }}
-  - --label=org.opencontainers.image.licenses=MIT
-  extra_files:
-  - Makefile
-  - pkg
-  - synocli
-  - chroot
-  - main.go
-  - go.sum
-  - go.mod
+# - image_templates:
+#   - rot26/{{ .ProjectName }}:{{ .Tag }}-arm
+#   goos: linux
+#   goarch: arm
+#   goarm: 7
+#   dockerfile: goreleaser.Dockerfile
+#   use: buildx
+#   build_flag_templates:
+#   - --platform=linux/arm
+#   - --label=org.opencontainers.image.title={{ .ProjectName }}
+#   - --label=org.opencontainers.image.description={{ .ProjectName }}
+#   - --label=org.opencontainers.image.url=https://github.com/rot26/{{ .ProjectName }}
+#   - --label=org.opencontainers.image.source=https://github.com/rot26/{{ .ProjectName }}
+#   - --label=org.opencontainers.image.version={{ .Version }}
+#   - --label=org.opencontainers.image.created={{ time "2006-01-02T15:04:05Z07:00" }}
+#   - --label=org.opencontainers.image.revision={{ .FullCommit }}
+#   - --label=org.opencontainers.image.licenses=MIT
+#   extra_files:
+#   - Makefile
+#   - pkg
+#   - synocli
+#   - chroot
+#   - main.go
+#   - go.sum
+#   - go.mod
 
 - image_templates:
-  - ghcr.io/{{ .Env.GITHUB_REPOSITORY_OWNER }}/{{ .ProjectName }}:{{ .Tag }}-arm64
+  - rot26/{{ .ProjectName }}:{{ .Tag }}-arm64
   goos: linux
   goarch: arm64
   use: buildx
-  dockerfile: Dockerfile
+  dockerfile: goreleaser.Dockerfile
   build_flag_templates:
   - --platform=linux/arm64/v8
   - --label=org.opencontainers.image.title={{ .ProjectName }}
   - --label=org.opencontainers.image.description={{ .ProjectName }}
-  - --label=org.opencontainers.image.url=https://github.com/{{ .Env.GITHUB_REPOSITORY_OWNER }}/{{ .ProjectName }}
-  - --label=org.opencontainers.image.source=https://github.com/{{ .Env.GITHUB_REPOSITORY_OWNER }}/{{ .ProjectName }}
+  - --label=org.opencontainers.image.url=https://github.com/rot26/{{ .ProjectName }}
+  - --label=org.opencontainers.image.source=https://github.com/rot26/{{ .ProjectName }}
   - --label=org.opencontainers.image.version={{ .Version }}
   - --label=org.opencontainers.image.created={{ time "2006-01-02T15:04:05Z07:00" }}
   - --label=org.opencontainers.image.revision={{ .FullCommit }}
@@ -98,15 +98,14 @@ dockers:
   - go.mod
 
 docker_manifests:
-- name_template: ghcr.io/{{ .Env.GITHUB_REPOSITORY_OWNER }}/{{ .ProjectName }}:{{ .Tag }}
+- name_template: rot26/{{ .ProjectName }}:{{ .Tag }}
   image_templates:
-  - ghcr.io/{{ .Env.GITHUB_REPOSITORY_OWNER }}/{{ .ProjectName }}:{{ .Tag }}-amd64
-  - ghcr.io/{{ .Env.GITHUB_REPOSITORY_OWNER }}/{{ .ProjectName }}:{{ .Tag }}-arm64v8
-  - ghcr.io/{{ .Env.GITHUB_REPOSITORY_OWNER }}/{{ .ProjectName }}:{{ .Tag }}-arm
+  - rot26/{{ .ProjectName }}:{{ .Tag }}-amd64
+  - rot26/{{ .ProjectName }}:{{ .Tag }}-arm64v8
+  # - rot26/{{ .ProjectName }}:{{ .Tag }}-arm
 
-- name_template: ghcr.io/{{ .Env.GITHUB_REPOSITORY_OWNER }}/{{ .ProjectName }}:latest
+- name_template: rot26/{{ .ProjectName }}:latest
   image_templates:
-  - ghcr.io/{{ .Env.GITHUB_REPOSITORY_OWNER }}/{{ .ProjectName }}:{{ .Tag }}-amd64
-  - ghcr.io/{{ .Env.GITHUB_REPOSITORY_OWNER }}/{{ .ProjectName }}:{{ .Tag }}-arm64v8
-  - ghcr.io/{{ .Env.GITHUB_REPOSITORY_OWNER }}/{{ .ProjectName }}:{{ .Tag }}-arm
-
+  - rot26/{{ .ProjectName }}:{{ .Tag }}-amd64
+  - rot26/{{ .ProjectName }}:{{ .Tag }}-arm64v8
+  # - rot26/{{ .ProjectName }}:{{ .Tag }}-arm

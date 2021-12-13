@@ -1,8 +1,5 @@
 # This is an example .goreleaser.yml file with some sensible defaults.
 # Make sure to check the documentation at https://goreleaser.com
-gomod:
-  proxy: true
-
 before:
   hooks:
     # You may remove this if you don't use go modules.
@@ -14,23 +11,14 @@ builds:
       - CGO_ENABLED=0
     goos:
       - linux
-      #- windows
-      # - darwin
-    goarch:
-      - arm64
-      # - arm
-      # - amd64
-    binary: synology-csi
-    # goarm:
-    #   - 6
-    #   - 7
-
+      - windows
+      - darwin
 archives:
   - replacements:
       darwin: Darwin
       linux: Linux
-      #windows: Windows
-      #386: i386
+      windows: Windows
+      386: i386
       amd64: x86_64
 checksum:
   name_template: 'checksums.txt'
@@ -42,31 +30,3 @@ changelog:
     exclude:
       - '^docs:'
       - '^test:'
-
-dockers:
-# - image_templates:
-#   - "foo/bar:{{ .Version }}-amd64"
-#   use: buildx
-#   dockerfile: goreleaser.Dockerfile
-#   build_flag_templates:
-#   - "--build-arg=GOOS=linux"
-#   - "--build-arg=GOARCH=amd64"
-#   - "--platform=linux/amd64"
-- image_templates:
-  - "foo/bar:{{ .Version }}-arm64v8"
-  use: buildx
-  # use: docker
-  goarch: arm64
-  dockerfile: goreleaser.Dockerfile
-  build_flag_templates:
-  # - "--build-arg=GOOS=linux"
-  # - "--build-arg=GOARCH=arm64"
-  # - "--pull"
-  - "--no-cache"
-  - "--platform=linux/arm64/v8"
-
-docker_manifests:
-- name_template: foo/bar:{{ .Version }}
-  image_templates:
-  # - foo/bar:{{ .Version }}-amd64
-  - foo/bar:{{ .Version }}-arm64v8
